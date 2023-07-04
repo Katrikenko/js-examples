@@ -692,7 +692,7 @@ console.log(calcSpaceFromDesign("button")); */
 
 //=============================
 
-const code = "(5 + 5) % 5 === 0";
+/* const code = "(5 + 5) % 5 === 0";
 
 console.log(eval(code));
 
@@ -756,3 +756,157 @@ const link1 = redirectToPath(path); // URI
 const link2 = getUrl(link1); // Decode URI
 
 console.log(link === link2);
+ */
+
+//=================================================
+
+/* const a = Number(10);
+const b = 10;
+
+console.log(a === b);  */
+
+//=================================================
+/* console.log("===========================");
+
+const a = 0.1;
+const b = 0.2;
+const c = 0.3;
+const d = a + b;
+
+console.log(d - c < Number.EPSILON && c - d < Number.EPSILON);
+
+//==========================================================
+console.log("===========================");
+
+console.log(Number.MIN_SAFE_INTEGER);
+console.log(Number.MAX_SAFE_INTEGER);
+
+//=========================================================
+console.log("===========================");
+
+console.log(Number.MIN_VALUE);
+console.log(Number.MAX_VALUE);
+
+//=========================================================
+console.log("==========================="); */
+
+/* function reviewNumber(num) {
+  if (isNaN(num)) {
+    return console.log("is Not a Number", num);
+  }
+
+  if (!num && num !== 0) {
+    return console.log("Bad number", num);
+  } else if (!Number.isInteger(num)) {
+    return console.log("Fractional number", num);
+  }
+
+  if (!Number.isSafeInteger(num)) {
+    return console.log("Dangerous number", num);
+  }
+  return console.log(num);
+}
+
+reviewNumber(Number.MAX_SAFE_INTEGER + 1);
+*/
+
+//============================================================
+
+/* const a1 = Number(12.46703);
+const a2 = a1.toFixed(1);
+const a3 = a2.charAt();
+
+let num = 3.14159;
+let num2 = 1500;
+
+const num3 = a1.toExponential(2);
+
+console.log(
+  a2,
+  "|",
+  a3,
+  "|",
+  num.toPrecision(3),
+  "|",
+  parseFloat(num2.toPrecision(1)),
+  "|",
+  num3
+);
+
+//============================================
+
+let example = (36.256).toString();
+console.log(typeof example, example);
+*/
+
+//===============================================
+
+let str = "Hello";
+
+console.log(str.length);
+
+//=========================================
+
+console.log(String.fromCodePoint(128514)); // numerical codes Unicode (simbols)
+console.log(String.fromCharCode(65));
+
+let b = "♀";
+console.log(b.codePointAt(0));
+
+//============================================
+
+console.log(String.raw`www.test.com/home/catalog/category/new`);
+console.log(`www.test.com/home\ncatalog\category/new`);
+
+//===================================================================
+
+const str1 = "Hello,";
+const str2 = "World!";
+console.log(str1.concat(" ", str2));
+
+//==================================================
+
+console.log(str.includes("lo", 2));
+console.log(str.includes("He", 2));
+console.log(str.indexOf("o"));
+
+const exa = "OlortEnglotdsh";
+
+console.log(exa.lastIndexOf("lo"));
+console.log(exa.startsWith("Ol"));
+console.log(exa.endsWith("ot", 11));
+
+console.log(exa.at(4));
+console.log(exa.charAt(4));
+
+//=================================
+
+console.log(exa.padEnd(18, "End"));
+console.log(exa.padStart(17, "."));
+
+//=======================================
+
+const mood = "Happy! ";
+
+console.log(mood.repeat(3));
+
+//=================================
+
+console.log(exa.slice(-9, -3));
+
+console.log(exa.substring(5, 11));
+
+//=================================
+
+const sentence = "Hello, World!";
+
+console.log(sentence.toLowerCase());
+console.log(sentence.toUpperCase());
+
+//====================================
+
+const sentence1 = "       Hello, World!      ";
+
+console.log(sentence1.trim(), "1");
+console.log(sentence1.trimStart(), "1");
+console.log(sentence1.trimEnd(), "1");
