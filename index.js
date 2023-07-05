@@ -841,7 +841,7 @@ console.log(typeof example, example);
 
 //===============================================
 
-let str = "Hello";
+/* let str = "Hello";
 
 console.log(str.length);
 
@@ -910,3 +910,184 @@ const sentence1 = "       Hello, World!      ";
 console.log(sentence1.trim(), "1");
 console.log(sentence1.trimStart(), "1");
 console.log(sentence1.trimEnd(), "1");
+ */
+
+const a = 1;
+const b = 2;
+const c = 3;
+
+let list = [a, b, c];
+
+console.log(list);
+
+//===============================
+
+const testArr = Array(5);
+
+testArr[0] = "Start";
+testArr[1] = " ";
+testArr[2] = "Hello, World!";
+testArr[3] = " ";
+testArr[testArr.length] = 456;
+testArr[10] = "End";
+testArr[testArr.length] = 40;
+testArr["test"] = "Test123";
+
+delete testArr[3];
+
+console.log(testArr);
+console.log(testArr.length);
+console.log(testArr[testArr.length - 1]);
+
+//============================================
+console.log("=======================");
+
+const big = [[[1], [2, 3, 4, 5], [6]], [[b]], [[c]]];
+
+console.log(big[0][1][2]);
+
+//============================================
+console.log("=======================");
+
+const location = [
+  [110, 220],
+  [100, 200],
+  [205, 105],
+];
+
+// for (const point of location) {
+//   console.log(point);
+
+//   for (const coordIndex in point) {
+//     console.log(coordIndex);
+//   }
+// }
+
+//=========================
+
+// for (const pointIndex in location) {
+//   console.log(location[pointIndex]);
+
+//   for (const coordIndex in location[pointIndex]) {
+//     console.log(location[pointIndex][coordIndex]);
+//   }
+// }
+
+//==============================
+
+// for (let i = 0; i < location.length; i++) {
+//   console.log(location[i]);
+
+//   for (let j = 0; j < location[i].length; j++) {
+//     console.log(location[i][j]);
+//   }
+// }
+
+//==================================
+
+const l1 = [];
+const l2 = [];
+
+// console.log(l1 === l2);
+console.log(l1.toString() === String(l2));
+
+//=============================================
+console.log("=======================");
+
+let a1 = [0, 1, 2];
+let b1 = a1;
+a1[3] = 3;
+
+let [...c1] = a1;
+
+let d1 = [...a1];
+
+// console.log(a1, b1, c1);
+
+delete b1[1];
+
+console.log(a1, b1, c1, d1);
+
+//=============================================
+console.log("=======================");
+
+let array = [
+  [1, 80],
+  [2, 70],
+  [3, 60],
+];
+
+let [q, ...rest] = array;
+
+console.log(q, rest);
+
+const [[x1, x2], y3, u4 = "test"] = rest;
+
+console.log(u4, x1, x2);
+
+//==============================================
+console.log("=======================");
+
+let r1 = null;
+let r2 = [2, 3, 5];
+let r3 = [...(r1 || [])];
+
+console.log(r1, r3);
+
+[r1, r2] = [r2, r1];
+
+console.log(r1, r2);
+
+//==============================================
+console.log("=======================");
+
+// function printFullName(name, surname, lastname) {
+//   return `${name}, ${surname}, ${lastname}`;
+// }
+// console.log(printFullName("Stepan", "Stepanenko", "Stepanov"));
+
+function printFullName([name, surname, lastname, ...arg]) {
+  //   console.log(arg);
+  //   return arg.toString();
+  return `${name}, ${surname}, ${lastname}, ${
+    arg.length ? `(${arg.toString()})` : ""
+  }`;
+}
+console.log(
+  printFullName(["Stepan", "Stepanenko", "Stepanov", "Admin", " 19"])
+);
+
+/* //==============================================
+console.log("=======================");
+
+function sumAllNum(...nums) {
+  let sum = 0;
+
+  for (const n of nums) {
+    sum += n;
+  }
+
+  return [sum, nums.length];
+}
+
+const [sum, numLength] = sumAllNum(
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16
+);
+
+console.log(sum, numLength); 
+*/
