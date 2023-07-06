@@ -912,7 +912,7 @@ console.log(sentence1.trimStart(), "1");
 console.log(sentence1.trimEnd(), "1");
  */
 
-const a = 1;
+/* const a = 1;
 const b = 2;
 const c = 3;
 
@@ -1056,6 +1056,7 @@ function printFullName([name, surname, lastname, ...arg]) {
 console.log(
   printFullName(["Stepan", "Stepanenko", "Stepanov", "Admin", " 19"])
 );
+*/
 
 /* //==============================================
 console.log("=======================");
@@ -1091,3 +1092,152 @@ const [sum, numLength] = sumAllNum(
 
 console.log(sum, numLength); 
 */
+
+//=================================
+
+/* const key = "name";
+
+const a = {
+  test: 100,
+  ["text"]: "HelloWorld",
+  [key]: "Pavlo",
+
+  info: {
+    name: "Evgen",
+    surname: "Krok",
+    age: 19,
+  },
+};
+
+console.log(a.test, a.text, a[key], a.info.surname);
+*/
+
+//=====================================
+
+/* let obj = {
+  name: "Evgen",
+  surname: "Krok",
+  age: 19,
+};
+
+delete obj.surname;
+
+console.log(obj);
+*/
+
+//==================================
+/* console.log("================================");
+
+const role = {
+  value: "admin",
+  status: 3,
+};
+
+const person = {
+  name: "Pavlo",
+  age: 25,
+  occupation: "Software developer",
+
+  //   info: role,
+  ...role,
+
+  address: {
+    city: "Kyiv",
+    street: "Shevchenko street",
+    houseNumber: 10,
+  },
+
+  getAddress: function () {
+    // return "Client's address";
+    return this.address;
+  },
+};
+
+console.log(person);
+// console.log("surname" in person);
+console.log(person.getAddress());
+
+console.log("================================");
+
+const person2 = { ...person };
+delete person.address;
+
+console.log(person.getAddress()); */
+
+// const {
+//   age,
+//   name,
+//   address: { city, street, zipcode = 41023 },
+//   ...rest
+// } = person;
+// console.log(age, name, city, street, zipcode);
+
+//=============
+
+/* function getAddress({
+  address: { city, street = "Not specified", houseNumber, zipcode = 104010 } = {
+    city: "Kyiv",
+    street: "Not specified",
+    houseNumber: "Not specified",
+    zipcode: "Not specified",
+  },
+}) {
+  return `Your address: ${city}, ${street}, ${houseNumber}, ${zipcode}`;
+}
+
+// const test = getAddress(person);
+const test = getAddress({ city: "Kyiv" });
+console.log(test); */
+
+/* function getAddress({ address }) {
+  if (address) {
+    const {
+      city,
+      street = "Not specified",
+      houseNumber,
+      zipcode = 104010,
+    } = address;
+
+    return `Your address: ${city}, ${street}, ${houseNumber}, ${zipcode}`;
+  }
+
+  return `No data`;
+}
+
+const test = getAddress({ city: "Kyiv" });
+console.log(test);
+*/
+
+// for (const key in person) {
+//   const item = person[key];
+//   //   console.log(key);
+
+//   if (typeof person[key] === "object") {
+//     for (const key2 in item) {
+//       console.log(item[key2]);
+//     }
+//   } else {
+//     console.log(item);
+//   }
+// }
+
+//======================================================================
+Number.prototype.toOwnString = function () {
+  console.log(this);
+
+  return `Numeric ${this}`;
+};
+
+const b = 1;
+
+const c = b.toOwnString();
+console.log(c);
+
+//====================================
+
+function Test() {
+  this.world = "World!";
+  return "Hello " + this.world;
+}
+
+console.log(Test());
