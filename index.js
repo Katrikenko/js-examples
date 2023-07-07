@@ -1222,7 +1222,7 @@ console.log(test);
 // }
 
 //======================================================================
-Number.prototype.toOwnString = function () {
+/* Number.prototype.toOwnString = function () {
   console.log(this);
 
   return `Numeric ${this}`;
@@ -1241,3 +1241,124 @@ function Test() {
 }
 
 console.log(Test());
+*/
+
+//==========================================
+
+/* const phoneBook = {
+  0: 1,
+  olga: "+380674879621",
+};
+
+//......
+
+function addToPhoneBook(phone, id) {
+  const key = Symbol(id + phoneBook[0]);
+  phoneBook[key] = phone;
+  phoneBook[0]++;
+}
+
+addToPhoneBook("+380992445859", "olga");
+
+//.........
+
+addToPhoneBook("+380504517794", "olga");
+
+console.log(phoneBook); 
+*/
+
+/* const user = {
+	name: "Olga",
+	id: 43150,
+}
+
+const phoneBook = {
+  0: 1,
+  olga: "+380674879621",
+};
+
+//......
+
+function addToPhoneBook(phone, id) {
+  const key = Symbol(id);
+  phoneBook[key] = phone;
+  return key;
+}
+
+const olga1 = addToPhoneBook("+380992445859", "olgaone@gmail.com");
+
+//.........
+
+const olga2 = addToPhoneBook("+380504517794", "olyatwo@gmail.com");
+
+console.log(phoneBook[olga1], olga2.description); */
+
+/* const user = {
+  name: "Olga",
+  id: 43150,
+  bookId: null,
+
+  getPhone(book) {
+    return book[this.bookId];
+  },
+};
+
+const phoneBook = {
+  me: "+380674879621",
+  name: "Phone Book",
+};
+
+//......
+
+function addToPhoneBook(phone, user) {
+  const symId = Symbol.for(user.id);
+  phoneBook[symId] = phone;
+  user.bookId = symId;
+}
+
+addToPhoneBook("+380992445859", user);
+
+console.log(user.getPhone(phoneBook));
+
+console.log(phoneBook);
+
+///===
+
+const symId = user.bookId;
+console.log(Symbol.keyFor(symId));
+
+for (const key in phoneBook) {
+  console.log(key);
+}
+*/
+
+let range = {
+  from: 1,
+  to: 5,
+
+  [Symbol.iterator]() {
+    this.current = this.from;
+
+    return this;
+  },
+  next() {
+    return this.current <= this.to
+      ? { done: false, value: this.current++ }
+      : { done: true };
+    // if (this.curent <= this.to) {
+    //   return { done: false, value: this.current++ };
+    // } else {
+    //   return { done: true };
+    // }
+  },
+};
+
+// for (let num of range) {
+//   console.log(num);
+// }
+const iterator = range[Symbol.iterator]();
+
+do {
+  console.log(iterator.current);
+  result = iterator.next();
+} while (!result.done);
