@@ -1331,7 +1331,7 @@ for (const key in phoneBook) {
   console.log(key);
 }
 */
-
+/* 
 let range = {
   from: 1,
   to: 5,
@@ -1362,3 +1362,141 @@ do {
   console.log(iterator.current);
   result = iterator.next();
 } while (!result.done);
+*/
+
+//==================================
+
+// console.log(Array.from("Hello World!"));
+// console.log(
+//   Array.from({ 0: "Hello", 1: "World", 2: "!!!", length: 3 }, (elem, index) => {
+//     console.log(elem, index);
+
+//     return elem;
+//   })
+// );
+
+//=================================
+
+/* const obj = {
+  0: "Hello",
+  1: "World",
+  2: "!!!",
+  length: 3,
+  prefix: "():",
+};
+
+const arr = Array.from(
+  obj,
+  function (elem, index) {
+    console.log(this.length);
+    console.log(elem, index);
+    return `${this.prefix} ${elem}`;
+  },
+  obj
+);
+
+console.log(Array.isArray(arr));
+*/
+
+let arr1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const arr2 = [-4, 4, 4.2, 4.5, 4.7, 5, 6, 5, 7];
+
+// console.log(Array.of(arr1, arr2));
+// console.log(Array.of(...arr1, ...arr2));
+
+// console.log(arr1.at(1));
+
+// console.log(arr2.pop());
+
+// console.log(-(arr1.length - arr1.push(10, 20, 30)));
+
+// console.log(arr1, arr2);
+
+// console.log(Array.of(...arr1, ...arr2));
+
+// console.log(arr2.shift());
+// console.log(arr2);
+
+// console.log(arr2.unshift(0, 4, 4.5));
+// console.log(arr2);
+
+// console.log(arr1.includes(2));
+// console.log(arr1.indexOf(4));
+// console.log(arr2.lastIndexOf(5));
+
+// const arr3 = [...arr1, ...arr2];
+// const arr3 = arr1.concat(arr2);
+
+// console.log(arr3);
+
+//================================
+
+/* console.log(arr1);
+
+arr1.copyWithin(0, 4, 7);
+
+console.log(arr1);
+
+//=============================
+
+console.log(arr2);
+
+arr2.fill("6", 5, 7);
+
+console.log(arr2);
+
+arr2.reverse();
+
+console.log(arr2);
+
+//==============================
+*/
+
+/* const filterFn = (value, index, array) => value % 2 === 0;
+
+const filteredArr = arr1.filter(filterFn);
+
+// console.log(filteredArr);
+
+const sortFn = (elem1, elem2) =>
+  // -(elem1 - elem2);
+  {
+    let result = elem1 - elem2;
+
+    if (elem1 % 2 === 0) {
+      result += 10;
+    }
+    // return elem1 < elem2 ? 1 : -1;
+
+    // let result = elem1 - elem2;
+    return result;
+  };
+
+const sortedArr = [20, 1, 2, 10, 3, 4, 30, 40].sort(sortFn);
+console.log(sortedArr);
+*/
+
+//=====================================================================
+
+/* const sortFn = (elem1, elem2) => {
+  if (elem1 % 2 === elem2 % 2) {
+    return 0;
+  } else if (elem1 % 2 !== 0 && elem2 % 2 === 0) {
+    return 1;
+  } else {
+    return -1;
+  }
+};
+
+const sortedArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].sort(
+  sortFn
+);
+console.log(sortedArr);
+
+console.log(["Arabic", "Info", "Zero", "City", "Aar"].sort());
+*/
+
+///========================================================================
+
+console.log(arr2.every((elem, index, array) => elem >= 0));
+console.log(arr2.some((elem, index, array) => elem >= 0));
