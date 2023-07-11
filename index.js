@@ -1398,8 +1398,8 @@ const arr = Array.from(
 console.log(Array.isArray(arr));
 */
 
-let arr1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const arr2 = [-4, 4, 4.2, 4.5, 4.7, 5, 6, 5, 7];
+// let arr1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+// const arr2 = [-4, 4, 4.2, 4.5, 4.7, 5, 6, 5, 7];
 
 // console.log(Array.of(arr1, arr2));
 // console.log(Array.of(...arr1, ...arr2));
@@ -1498,5 +1498,178 @@ console.log(["Arabic", "Info", "Zero", "City", "Aar"].sort());
 
 ///========================================================================
 
-console.log(arr2.every((elem, index, array) => elem >= 0));
-console.log(arr2.some((elem, index, array) => elem >= 0));
+// console.log(arr2.every((elem, index, array) => elem >= 0));
+// console.log(arr2.some((elem, index, array) => elem >= 0));
+
+//==============================================================
+
+// const userList = [
+//   { id: 68, name: "Lina", age: 27, balance: 10200 },
+//   { id: 1, name: "Dima", age: 19, balance: 0 },
+//   { id: 45, name: "Pavlo", age: 32, balance: 300 },
+// ];
+
+// const result = userList.map((user, index, array) => {
+//   user.balanceLimit = 1000 - user.balance;
+
+//   if (user.balanceLimit < 0) {
+//     user.balanceLimit = 0;
+//   }
+
+//   //   return user.name;
+//   return user;
+// });
+
+// // console.log(result.join(", "));
+// console.log(result);
+//=======================================
+
+// const flatArray = [
+//   [
+//     [100, 105],
+//     [200, 215],
+//   ],
+//   [
+//     [
+//       [220, 230],
+//       [430, 455],
+//     ],
+//   ],
+// ];
+
+// console.log(flatArray.flat(3));
+
+//======
+// const flatArray = [
+//   [100, 105],
+//   [200, 215],
+//   [220, 230],
+//   [430, 455],
+// ];
+// // console.log(flatArray.map((el) => [...el, el[0] - el[1]]));
+// console.log(flatArray.flatMap((el) => [...el, el[0] - el[1]]));
+
+//============
+
+const flatArray = [
+  [
+    [100, 105],
+    [200, 215],
+  ],
+  [
+    [220, 230],
+    [430, 455],
+  ],
+];
+
+// const result = flatArray.map((el) => {
+//   //   console.log(el);
+
+//   return el.map((it) => {
+//     // console.log(it);
+
+//     return it[0] - it[1];
+//   });
+// });
+
+// console.log(result);
+
+//==================
+
+// const result = flatArray.map((el) => {
+//   const newArr = el.map((it) => {
+//     return it[0] - it[1];
+//   });
+//   console.log(newArr);
+
+//   return newArr;
+// });
+//==================
+
+const result = flatArray.flatMap((el) => {
+  return el.map((it) => {
+    return it[0] - it[1];
+  });
+});
+console.log(result);
+
+result.forEach((elem, index, array) => {
+  console.log(elem);
+});
+
+//===============
+
+// const result = userList.reduce((num, user, userIndex, array) => {
+//   console.log(num, user.age);
+
+//   return user.age > num ? user.age : num;
+// }, 1);
+
+// console.log(result);
+// //=====
+
+// const result = userList.reduceRight((num, user, userIndex, array) => {
+//   console.log(num, user.age);
+
+//   return user.age > num ? user.age : num;
+// }, 1);
+
+// console.log(result);
+
+// //=====
+
+// const totalBalance = userList.reduce((num, user) => num + user.balance, 0);
+
+// console.log(totalBalance);
+//==========================
+
+// let minAge = 20;
+
+// const userBigAge = userList.sort((user1, user2) => {
+//   return user2.age - user1.age;
+// });
+
+// const userBigAge = userList.find(({ age }) => age >= 30);
+// const userBigAge = userList.findIndex(({ age }) => age >= minAge);
+// const userBigAge = userList.findLast(({ age }) => age >= minAge);
+// const userBigAge = userList.findLastIndex(({ age }) => age >= minAge);
+
+// console.log(userBigAge);
+
+//=========================================================================
+
+// const iter = userList.keys();
+// const iter = userList.values();
+
+// console.log(iter);
+
+// const result = iter.next();
+// console.log(result);
+
+// for (const elem of iter) {
+//   console.log(elem);
+// }
+
+//================================
+
+// const arr = [
+//   "Apple",
+//   "Carrot",
+//   "Key",
+//   "Lamp",
+//   "Pensil",
+//   "Watermelon",
+//   "Strawberry",
+// ];
+
+// const addFoodArr = ["Lemon", "Broccoli", "Cherry"];
+
+// console.log(arr.join(", "));
+
+// const arrSmall = arr.slice(2, 5);
+
+// const arrSmall = [...arr].splice(2, 3, ...addFoodArr);
+// const arrSmall = arr.splice(2, 3, "Tea", "Cheese", "Bread", ...addFoodArr);
+
+// console.log(arrSmall);
+// console.log(arr);
