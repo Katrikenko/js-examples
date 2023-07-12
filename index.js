@@ -1551,7 +1551,7 @@ console.log(["Arabic", "Info", "Zero", "City", "Aar"].sort());
 
 //============
 
-const flatArray = [
+/* const flatArray = [
   [
     [100, 105],
     [200, 215],
@@ -1595,7 +1595,7 @@ console.log(result);
 
 result.forEach((elem, index, array) => {
   console.log(elem);
-});
+});  */
 
 //===============
 
@@ -1673,3 +1673,85 @@ result.forEach((elem, index, array) => {
 
 // console.log(arrSmall);
 // console.log(arr);
+
+//=======================================================================================
+
+const article = {
+  info: {
+    id: 143659,
+    title: "My title",
+  },
+
+  description: "This is info about article",
+  categoryId: 1423,
+  likeAmount: 443,
+};
+
+const ARTICLE_FIELD = {
+  id: "Article ID",
+  title: "Title of the article",
+};
+
+articlePhoto = {
+  photoUrl: "...url",
+  photoId: 123,
+  photoType: "big",
+};
+
+articleCommentList = {
+  list: [{ id: 4232, user: "Ivan", message: "Cool content" }],
+};
+
+Object.assign(article, articlePhoto, articleCommentList);
+
+// console.log(article);
+// console.log(Object.entries(article));
+
+const formList = Object.entries(article.info);
+
+const formListLayout = formList.map(([key, value]) => {
+  return [ARTICLE_FIELD[key], value];
+});
+
+console.log(formListLayout);
+
+//===
+
+const objArr = [
+  ["id", 356],
+  ["title", "My product name"],
+  ["price", 1320],
+];
+
+console.log(Object.fromEntries(objArr));
+
+console.log(article.hasOwnProperty("description"));
+
+console.log(article.propertyIsEnumerable("id"));
+
+// Object.freeze(article);
+// article.title = "Hello";
+// console.log(article.hasOwnProperty("title"));
+
+// console.log(Object.isFrozen(article));
+
+//===
+
+// Object.preventExtensions(article);
+// article.test = "Hello";
+// console.log(article.test);
+
+// console.log(Object.isExtensible(article));
+
+//===
+
+Object.seal(article);
+delete article.id;
+console.log(article.id);
+
+console.log(Object.isSealed(article));
+
+//==
+
+console.log(Object.keys(article));
+console.log(Object.values(article));
