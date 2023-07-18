@@ -1,87 +1,141 @@
-// const roleField = "roleName";
+const date = new Date();
 
-// const data = {
-//   id: 1024,
-//   login: "user459",
-//   password: "12345qwerty",
-//   [roleField]: "Admin",
-//   go() {
-//     console.log("go");
-//   },
-//   test1: {
-//     test2: 123,
-//   },
-// };
+console.log(date.toISOString()); //greenwich mean time
 
-// const jsonData = JSON.stringify(
-//   data,
-//   (key, value) => {
-//     console.log(key, value);
+//===
 
-//     if (key === roleField) {
-//       return null;
-//     }
+const dateString = date.toISOString();
+// console.log(dateString);
+//=================
 
-//     if (typeof value === "string") {
-//       return value.toUpperCase();
-//     } else if (typeof value === "number") {
-//       return value * 10;
-//     }
-//     return value;
-//   },
-//   2
-// );
+console.log("year", date.getFullYear());
 
-// console.log(jsonData);
+date.setFullYear(2020);
 
-// //===================================================
+console.log("year", date.getFullYear());
 
-// const parseData = JSON.parse(
-//   jsonData,
-//   (key, value) => {
-//     console.log(key, value);
+//=====
 
-//     if (key === roleField) {
-//       return "Admin";
-//     }
+console.log("month", date.getMonth());
 
-//     if (typeof value === "string") {
-//       return value.toLowerCase();
-//     } else if (typeof value === "number") {
-//       return value / 10;
-//     }
-//     return value;
-//   },
-//   2
-// );
+date.setMonth(1);
 
-// console.log(parseData);
+console.log("month", date.getMonth());
 
-//==============================================
+//=====
 
-// const url = new URL("/path", "admin:12345@https://www.example.com");
-// const url = new URL("https://admin:12345@www.example.com:4000/path");
+console.log("date", date.getDate());
 
-const url = new URL(
-  "https://www.google.com/search?q=hello&q=helloWorld&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIMCAEQLhhDGLEDGIoFMgkIAhAjGCcYigUyCggDEAAYsQMYgAQyEAgEEC4YxwEYsQMY0QMYgAQyDAgFEC4YQxixAxiKBTIMCAYQLhhDGLEDGIoFMgoIBxAuGLEDGIAEMg0ICBAAGIMBGLEDGIAEMg0ICRAAGIMBGLEDGIAE0gEOMzIzMDA4NDcwajBqMTWoAgCwAgA&sourceid=chrome&ie=UTF-8"
-).searchParams;
+date.setDate(31);
 
-// console.log(url.href);
-// console.log(url.password);
+console.log("date", date.getDate());
 
-console.log(url.has("q"));
-console.log(url.append("name", "google"));
-// console.log(url);
+//========================
 
-console.log(url.getAll("q"));
+console.log("day", date.getDay());
 
-url.sort();
-console.log(url);
+//===============
 
-//========================================================
+console.log("minutes", date.getMinutes());
 
-const url1 = new URL("https://www.google.com/search");
+date.setMinutes(27);
 
-url1.searchParams.append("q", "cat photo");
+console.log("minutes", date.getMinutes());
 
-console.log(url1.href);
+//=====
+
+console.log("seconds", date.getSeconds());
+
+date.setSeconds(55);
+
+console.log("seconds", date.getSeconds());
+
+//=====
+
+console.log("milliseconds", date.getMilliseconds());
+
+date.setMilliseconds(345);
+
+console.log("milliseconds", date.getMilliseconds());
+
+//=====
+
+console.log(date);
+console.log(date.toString());
+
+//=====
+
+// console.log(new Date(dateString));
+
+// const date2 = Date.parse(dateString) + 1000 * 60 * 5;
+
+// console.log(date2);
+
+// console.log(date.toString()); // understandable date, current time zone
+// console.log(date.toUTCString()); // understandable date in UTC (Greenwich) format, better use this
+// console.log(date.toISOString()); // date in Greenwich (0) zone
+
+// console.log(date.toDateString()); // just date
+// console.log(date.toTimeString()); // just current time
+
+// const zone = date.getTimezoneOffset(); // difference beetween current TZ and Greenwich time zone
+// // const zone = date.getTimezoneOffset() / -60; // to get difference in?= hours
+// console.log(zone);
+
+//========================================
+
+//==========
+// const user = -3;
+
+// function getUserTimeZone(timezone) {
+//   //===================
+//   //   let date = Date.now();
+
+//   //========
+//   let date = new Date(Date.UTC(2025, 5, 26, 12, 30, 0, 0));
+//========
+
+//   console.log(date.toString());
+//   console.log(date.toUTCString());
+
+//=============
+//   console.log(date.getTime());
+
+//   console.log(date.getHours());
+//   console.log(date.getUTCHours());
+
+//   date.setHours(date.getUTCHours() + timezone);
+//==============
+
+//   const myTimeZone = date.getTimezoneOffset() / -60;
+//   console.log(myTimeZone);
+
+//   date -= 1000 * 60 * 60 * -myTimeZone;
+//   date -= 1000 * 60 * 60 * myTimeZone;
+
+//   date += 1000 * 60 * 60 * timezone;
+
+//==================
+// date.setTime(date.getTime() - 1000 * 60 * 60 * myTimeZone);
+// date.setTime(date.getTime() + 1000 * 60 * 60 * myTimeZone);
+
+// return date;
+// }
+
+// const userDate = getUserTimeZone(user);
+// console.log(userDate.toString());
+// console.log(userDate.toUTCString());
+//=================
+
+// console.log(getUserTimeZone(user));
+
+// console.log(new Date(getUserTimeZone(user)).toString());
+
+// console.log(new Date().toUTCString());
+
+// console.log(new Date(1750941000000).toUTCString());
+
+// console.log(userDate.getHours());
+// console.log(userDate.getUTCHours());
+
+// console.log(userDate.toTimeString()); // user time
