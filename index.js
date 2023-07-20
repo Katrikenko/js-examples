@@ -1,34 +1,91 @@
-console.log(Math.PI);
+/* const counterLabel = "Timer";
 
-//=====================
+console.time(counterLabel);
+console.count(counterLabel);
+
+//=====
+
+{
+  let a = 5;
+
+  a = 10;
+
+  console.error("Error: variable 'a' must be 5");
+  //   console.expection("Error");
+
+  console.info("Information");
+
+  console.warn("Warning! Potential problems");
+
+  console.debug("For testing and fixing bugs");
+}
+//=========
+console.timeLog(counterLabel);
+
+console.count(counterLabel);
+//=========
+console.group("Group 1");
+
+console.log("Test");
+console.debug("Test 2");
+
+console.groupCollapsed("Group 2");
+
+console.warn("Test 3");
+
+console.groupEnd();
+
+console.groupEnd();
+
+//========
+
+console.timeEnd(counterLabel);
+
+console.countReset(counterLabel);
+
+console.count(counterLabel);
+
+*/
+
+//=======================================================================
+
+// const test1 = () => console.trace("Hello!");
+
+// const test2 = () => test1();
+// const test3 = () => test2();
+
+// test3();
+//=======================================================================
+
+// const data = [
+//   { name: "John", age: 25, city: "New York" },
+//   { name: "Alice", age: 30, city: "London" },
+// ];
+
+// // console.table(data);
+// console.table(data, ["name", "age"]);
+
+//===========================================================
 
 const a = 5;
 const b = 10;
-const c = -1;
-const d = 0;
-const e = 16;
 
-const arr = [20, 30, 40];
+const result = a > b;
 
-// console.log(Math.max(a, b, c, ...arr));
-// console.log(Math.min(a, b, c, ...arr));
+console.assert(result, "Info");
+// if (a > b) {
+//   //....
+// } else {
+//   console.warn("Info");
+// }
 
-console.log(Math.sign(a));
+//====
 
-console.log(Math.pow(a, 4)); // exponentiation (5^4)
+// console.clear(); // clear terminal
 
-console.log(Math.sqrt(e)); // square root √
+//===========
 
-console.log(Math.floor(1.156), Math.floor(1.556), Math.floor(1.956));
-console.log(Math.ceil(1.156), Math.ceil(1.556), Math.ceil(1.956));
-console.log(Math.round(1.156), Math.round(1.556), Math.round(1.956));
-console.log(Math.trunc(1.156), Math.trunc(1.556), Math.trunc(1.956));
-
-//==============
-const randon = Math.trunc(Math.random() * 10) + 1; // add + 1 = 1-10, without = 0-10
-
-console.log(randon);
-
-//===================
-
-console.log(Math.fround(0.1 + 0.2) === Math.fround(0.3));
+console.log(
+  "%cHello World",
+  "color: yellow; background-color: blue; font-size: 50px"
+);
