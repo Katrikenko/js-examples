@@ -1,43 +1,76 @@
-const regexp = /(?<group1>.e)(?<group2>st)/gims;
+// function getUserData(userID) {
+//   try {
+//     const a = 10;
 
-// const regexp1 = RegExp("еest", "g");
+//     a = 5;
+//   } catch (err) {
+//     // console.log(err);
+//     const newErr = new Error(`Error: Unable to get user ${userID} data`, {
+//       cause: err,
+//     });
 
-// console.log(regexp.flags);
-// console.log(regexp.global);
-// console.log(regexp.multiline);
-// console.log(regexp.dotAll);
-// console.log(regexp.ignoreCase);
+//     console.log(newErr);
+//   }
+//   //   finally {
+//   // 	console.log("2");
+//   //   }
+// }
 
-// const result = regexp.exec("This is test and est");
+// getUserData(14843);
 
-// // console.log(result[2]);
-// // console.log(result);
-// console.log(result.groups);
+// function updateUserData(userID) {
+//   try {
+//     const data = getUserData(userID);
 
-// console.log(regexp.exec("This is test and est"));
-// console.log(regexp.exec("This is test and est"));
+//     data.name = "Ivan";
 
-// console.log(regexp.test("This is test and est"));
+//     //......
+//   } catch (err) {
+//     const newErr = new Error(`Error: Unable to update user ${userID} data`, {
+//       cause: err,
+//     });
 
-// console.log(regexp.source);
+//     console.log(newErr.message);
+//   }
+// }
 
-// //======
+// updateUserData(65456);
 
-// regexp.lastIndex = 9;
+//================
 
-// console.log(regexp.exec("This is test and est"));
-// console.log(regexp.exec("This is test and est"));
+// try {
+//   throw new Error("The example of error");
+// } catch (error) {
+//   //   console.log(error.message);
+//   //   console.log(error.cause);
+//   //   console.log(error.stack);
+//   console.log(error.toString());
+// }
 
-//=====
+//==================
 
-const test = "This is test and est";
+const ERROR_ID_LIST = {
+  NOT_NUMBER: 1,
+};
 
-console.log(test.replace(regexp, "###"));
+function sumNum(a, b) {
+  if (typeof a !== "number" || typeof b !== "number") {
+    // throw new Error("Arguments aren't numbers");
+    const error = new TypeError("Arguments aren't numbers");
+    error.name = ERROR_ID_LIST.NOT_NUMBER;
+    throw error;
+  }
 
-console.log(test.search(regexp));
-// console.log(test.match(regexp));
+  return a + b;
+}
 
-const result1 = test.matchAll(regexp);
+try {
+  sumNum(10, "abc");
+} catch (err) {
+  //   console.log(err.message);
+  //   console.log(err.name);
 
-console.log(result1.next());
-console.log(result1.next());
+  if (err.name === ERROR_ID_LIST.NOT_NUMBER) {
+    sumNum(10, 0);
+  }
+}
