@@ -1,139 +1,86 @@
-// const User = {
-//   login: null,
-//   password: null,
-//   role: null,
-//   age: null,
-// };
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
 
-//======
-function User(data) {
-  //   console.log("new", new.target);
+  test = () => {
+    console.log("Hello, World!", this.name);
+  };
+}
 
-  if (new.target) {
-    const { login = null, password = null, isAdmin = null, age = 0 } = data;
+class User extends Person {
+  constructor(login, password) {
+    super(login);
 
-    const role = isAdmin ? "Admin" : "User";
+    this.login = login;
+    this.password = password;
+  }
 
-    const object = Object.assign(this, {
-      login,
-      password,
-      role,
-      age,
-    });
+  login = null;
+  password = null;
+  #role = null;
+  //   static age = null;
+  age = null;
 
-    if (role === "Admin") {
-      object.verify = function (password) {
-        console.debug(password, this);
-        return this.password === password;
-      };
-    }
-    if (age >= 30) {
-      object.login = String(object.login).toUpperCase();
-    }
+  id = null;
+  #id = 1000;
 
-    object.toString = function () {
-      return `User ${this.login}`;
-    };
+  isAdmin = () => {
+    console.log(this.#id);
+    return this.role === "Admin";
+  };
 
-    // this.login = login;
-    // this.password = password;
-    // const role = isAdmin ? "Admin" : "User";
-    // this.age = age;
-    // const verify = function (password) {
-    //   return this.password === password;
-    // };
+  createAdminUser = (login) => {
+    const password = this.generateRandomPassword();
+    return new User();
+  };
 
-    return object;
-  } else {
-    return new User(data); // if some constructor don't have 'new'
+  static generateRandomPassword = () => {
+    return true;
+  };
+
+  get admin() {
+    return this.#role === "Admin";
+  }
+
+  set admin(value) {
+    this.#role = "Admin";
   }
 }
 
-// function UserAdmin({ login = null, password = null, isAdmin = null, age = 0 }) {
-//   this.login = login;
-//   this.password = password;
-//   this.role = isAdmin ? "Admin" : "User";
-//   this.age = age;
+const user = new User("Gennady", "27cMx5q38");
 
-//   this.verify = function (password) {
-//     return this.password === password;
-//   };
-// }
-//=====
+// console.log(User.prototype === user.__proto__);
+// console.log(user);
 
-const registerData = {
-  login: "Ivan",
-  password: "51jk69d",
-  isAdmin: true,
-  age: 25,
-};
+// console.log(user.isAdmin());
 
-const user = User(registerData);
+function verifyAdmin(fn) {
+  const result = fn();
 
-console.log(user.verify("tsgf"));
+  if (!result) {
+    throw new Error("Not an Admin");
+  }
 
-//================
-
-const adminData = {
-  login: "Hanna",
-  password: "345kjnFA7",
-  isAdmin: true,
-};
-
-const admin = User(adminData);
-console.log(admin.password);
-
-//=====
-
-User.prototype.test = "Hello, World!";
-
-console.log(user.test);
-//======
-
-const testData = {
-  login: "Hanna",
-  password: "345kjnFA7",
-  age: 37,
-};
-
-const testUser = new User(testData);
-
-console.log(testUser.login);
-
-//=========
-
-console.log(Object.getPrototypeOf(testUser) === User.prototype);
-
-console.log(user.toString());
-
-console.log(User.length);
-
-const test = User;
-
-console.log(test.name);
-
-//===========
-
-console.log("======================");
-
-console.log(user.verify("51jk69d"));
-
-// const verifyUser = user.verify;
-// console.log(verifyUser.apply(user, ["51jk69d"]));
-
-const verifyUser = user.verify.bind(user, "51jk69d");
-console.log(verifyUser());
-
-//============
-
-function Animal(name) {
-  this.name = name;
+  return true;
 }
 
-const Person = function (name, age) {
-  Animal.call(this, name);
-  this.age = age;
-};
+// verifyAdmin(user.isAdmin);
 
-const user2 = new Person("Roman", 32);
-console.log(user2.name, user2.age);
+// console.log(user);
+// console.log(User.generateRandomPassword());
+// console.log(User);
+
+//=======
+
+// console.log(user.admin);
+
+// user.admin = true;
+
+// console.log(user.admin);
+
+//======
+
+// console.log(user.test());
+
+console.log(user instanceof User);
