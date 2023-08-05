@@ -1,458 +1,523 @@
-/*
-// // class RecentPurchases {
-// //   static #instance = null;
+class Composite {
+  comments = [];
 
-// //   constructor() {
-// //     this.purchases = [];
-// //   }
+  addComment(comment) {
+    this.comments.push(comment);
+  }
 
-// //   static create() {
-// //     if (!this.#instance) {
-// //       this.#instance = new RecentPurchases();
-// //     }
-
-// //     return this.#instance;
-// //   }
-
-// //   add(item) {
-// //     this.purchases.push(item);
-// //   }
-
-// //   get() {
-// //     return this.purchases;
-// //   }
-// // }
-
-// // const lastPurchaseList = RecentPurchases.create();
-// // //=======
-// // const lastPurchaseList2 = RecentPurchases.create();
-
-// // console.log(lastPurchaseList === lastPurchaseList2);
-
-// // lastPurchaseList2.add("Phone");
-// // lastPurchaseList2.add("Earphones");
-
-// // console.log(lastPurchaseList.get());
-
-// // =========================================================
-
-// class RecentPurchases {
-//   static #instance = null;
-
-//   static #purchases = [];
-
-//   static create() {
-//     if (!this.#instance) {
-//       this.#instance = new RecentPurchases();
-//     }
-
-//     return this.#instance;
-//   }
-
-//   static add(item) {
-//     this.#purchases.push(item);
-//   }
-
-//   static get() {
-//     return this.#purchases;
-//   }
-// }
-
-// RecentPurchases.create();
-
-// RecentPurchases.add("Phone");
-// RecentPurchases.add("Earphones");
-// //=======
-
-// console.log(RecentPurchases.get());
-
-// // =======================================================
-// class Button {
-//   constructor({ text, color }) {
-//     this.text = text;
-//     this.color = color;
-//   }
-
-//   render() {
-//     return `<button class="color:${this.color};">${this.text}</button>`;
-//   }
-// }
-
-// class IconButton {
-//   constructor({ icon, color }) {
-//     this.icon = icon;
-//     this.color = color;
-//   }
-
-//   render() {
-//     return `<button class="color:${this.color};"><img src="${this.icon}"></button>`;
-//   }
-// }
-
-// class ButtonFactory {
-//   static TYPE = {
-//     BASIC: "basic",
-//     ICON: "icon",
-//   };
-
-//   static createButton(type, options) {
-//     if (options.icon) {
-//       return new IconButton(options);
-//     }
-//     if (options.text) {
-//       return new Button(options);
-//     }
-
-//     throw new Error(`This type of button doesn't exist: ${type}`);
-
-//     // switch (type) {
-//     //   case this.TYPE.BASIC:
-//     //     return new Button(options);
-//     //   case this.TYPE.ICON:
-//     //     return new IconButton(options);
-//     //   default:
-//     //     throw new Error(`This type of button doesn't exist: ${type}`);
-//     // }
-//   }
-// }
-
-// const myIconButton = ButtonFactory.createButton(ButtonFactory.TYPE.ICON, {
-//   color: "red",
-//   icon: "/icon/my-icon.svg",
-// });
-
-// console.log(myIconButton);
-
-// //===================================================================================
-
-// class User {
-//   constructor(email) {
-//     this.email = email;
-//   }
-
-//   sendEmail(message) {
-//     console.log(`Sending message: ${message} to e-mail ${this.email}`);
-//   }
-// }
-
-// class Video {
-//   constructor(name) {
-//     this.name = name;
-//   }
-// }
-
-// class Channel {
-//   constructor(name) {
-//     this.name = name;
-//     this.subscribers = [];
-//   }
-
-//   subscribe(user) {
-//     this.subscribers.push(user);
-//   }
-
-//   unsubscribe(user) {
-//     this.subscribers = this.subscribers.filter((sub) => sub !== user);
-//   }
-
-//   createVideo(name) {
-//     const video = new Video(name);
-//     this.sendNotify(video);
-//   }
-
-//   sendNotify(video) {
-//     this.subscribers.forEach((subscriber) => {
-//       subscriber.sendEmail(
-//         `New video "${video.name}" on Youtube chanel ${this.name}!`
-//       );
-//     });
-//   }
-// }
-
-// const channel = new Channel("IT Brains");
-
-// const user1 = new User("john@example.com");
-// const user2 = new User("jane@example.com");
-// const user3 = new User("alice@example.com");
-
-// channel.subscribe(user1);
-// channel.subscribe(user2);
-// channel.subscribe(user3);
-
-// channel.createVideo("HTML Lesson");
-
-// console.log("=======");
-
-// channel.unsubscribe(user1);
-
-// channel.createVideo("CSS Lesson");
-
-// //===================================
-
-class Coffee {
-  name = "Coffee";
-
-  cost = 10;
-
-  cook() {
-    console.log(`Preparing ${this.name}`);
+  revomeComment(comment) {
+    const index = this.comments.indexOf(comment);
+    if (index !== -1) {
+      this.comments.splice(index, 1);
+    }
   }
 }
 
-class MilkDecorator {
-  constructor(coffee, amount) {
-    this.coffee = coffee;
-    this.amount = amount;
-  }
+class Comment extends Composite {
+  //   constructor(text) {
+  //     this.text = text;
+  //   }
 
-  get name() {
-    return `${this.coffee.name} with ${this.amount} ml of milk`;
-  }
+  //   display() {
+  //     console.log(`— Comment: ${this.text}`);
+  //   }
 
-  get cost() {
-    const milkPrice = 0.05;
-    return this.coffee.cost + milkPrice * this.amount;
-  }
+  //===============================================
 
-  cook() {
-    console.log(`Preparing ${this.name}`);
-  }
-}
-
-let coffee = new Coffee();
-console.log(coffee.name);
-console.log(coffee.cost);
-coffee.cook();
-
-let latteCoffee = new MilkDecorator(coffee, 300);
-console.log(latteCoffee.name);
-console.log(latteCoffee.cost);
-latteCoffee.cook();
-
-//=======================================================
-
-console.log("//=======================================================");
-
-class TextEditor {
-  #text = "";
-
-  set text(text) {
-    this.#text = text;
-    this.#save();
-  }
-
-  get text() {
-    return this.#text;
-  }
-
-  #save() {
-    Snapshot.create(this.text);
-  }
-
-  restore() {
-    this.#text = Snapshot.restore().text;
-  }
-}
-
-class Snapshot {
   constructor(text) {
+    super();
     this.text = text;
   }
 
-  static #snapshots = [];
+  display() {
+    console.log(`— Comment: ${this.text}`);
 
-  static create(text) {
-    console.log(text);
-    this.#snapshots.push(new Snapshot(text));
-  }
-
-  static restore() {
-    this.#snapshots.pop();
-    return this.#snapshots[this.#snapshots.length - 1];
-  }
-}
-
-const editor = new TextEditor();
-
-editor.text = "It is initial text.";
-editor.text = "It is edited text.";
-editor.text = "It is updated text.";
-
-console.log("=========");
-
-console.log(editor.text);
-
-console.log("=========");
-
-editor.restore();
-
-console.log(editor.text);
-
-editor.restore();
-
-console.log(editor.text);
-
-//=======================================================
-
-console.log("//=======================================================");
-
-class AuthHandler {
-  setNextHandler(handler) {
-    this.nextHandler = handler;
-    return handler;
-  }
-
-  login(user, password) {
-    if (this.nextHandler) {
-      return this.nextHandler.login(user, password);
-    } else {
-      return false;
+    for (const comment of this.comments) {
+      comment.display();
     }
   }
 }
 
-class TwoFactorAuthHandler extends AuthHandler {
-  login(user, password) {
-    if (
-      user === "john" &&
-      password === "password" &&
-      this.isValidTwoFactorCode()
-    ) {
-      console.log("Login is allowed with two-factor authentication");
-      return true;
-    } else {
-      return super.login(user, password);
-    }
+class Video extends Composite {
+  //   comment = null;
+
+  //   constructor(title) {
+  //     this.title = title;
+  //   }
+
+  //   display() {
+  //     console.log(`Video: ${this.title}`);
+
+  //     if (this.comment) this.comment.display();
+  //   }
+
+  //=============================================
+
+  constructor(title) {
+    super();
+    this.title = title;
   }
 
-  isValidTwoFactorCode() {
-    return true;
-  }
-}
+  display() {
+    console.log(`Video: ${this.title}`);
 
-//==========
-
-class RoleHander extends AuthHandler {
-  login(user, password) {
-    if (user === "guest") {
-      console.log("Login is allowed with the guest role");
-      return true;
-    } else {
-      return super.login(user, password);
+    for (const comment of this.comments) {
+      comment.display();
     }
   }
 }
 
-class CretentialsHandler extends AuthHandler {
-  login(user, password) {
-    if (user === "admin" && password === "admin123") {
-      console.log("Login is permitted by login and password");
-      return true;
-    } else {
-      return super.login(user, password);
+// const video = new Video("Educational video");
+
+// video.comment = new Comment("Very useful video");
+
+// video.display();
+
+//====================================================
+
+const video = new Video("Educational video");
+
+video.addComment(new Comment("Very useful video"));
+video.addComment(new Comment("Very helpful video"));
+
+video.comments[0].addComment(new Comment("Answer: Agreed!"));
+
+video.display();
+
+console.log(video.comments);
+
+console.log("================================================");
+
+//====================================================================
+
+class Category {
+  static #categories = {};
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  static create(name) {
+    if (!this.#categories[name]) {
+      this.#categories[name] = new Category(name);
+    }
+    return this.#categories[name];
+  }
+}
+
+class Product {
+  constructor(name, category) {
+    this.name = name;
+    this.category = category;
+  }
+
+  display() {
+    console.log(`Product: ${this.name}, Category: ${this.category.name}`);
+  }
+}
+
+const electronics = Category.create("Electronics");
+const books = Category.create("Books");
+const electronics2 = Category.create("Electronics");
+
+console.log(electronics, books, electronics2);
+console.log(electronics === electronics2);
+
+const product1 = new Product("Laptop", electronics);
+const product2 = new Product("Headphones", electronics);
+const product3 = new Product("Book Title", books);
+const product4 = new Product("Smartphone", new Category("Electronics"));
+
+product1.display();
+product2.display();
+product3.display();
+product4.display();
+
+console.log(product1.category === product4.category);
+
+const list = [product1, product2, product3, product4].filter(
+  (product) => product.category === Category.create("Electronics")
+);
+
+console.log(list);
+
+console.log("================================================");
+
+//====================================================================
+
+class CoffeeMachine {
+  prepareCoffee() {
+    this.boilWater();
+    this.grindCofeeBeans();
+    this.brewCoffee();
+    this.pourIntoCup();
+    this.addIngredients();
+    this.serveCoffee();
+  }
+
+  boilWater() {
+    console.log("Boiling water...");
+  }
+
+  grindCofeeBeans() {
+    console.log("Grinding coffee beans...");
+  }
+
+  brewCoffee() {
+    console.log("Brewing coffee...");
+  }
+
+  pourIntoCup() {
+    console.log("Pouring coffee into cup...");
+  }
+
+  addIngredients() {
+    //===========;
+  }
+
+  serveCoffee() {
+    console.log("Coffee served...");
+  }
+}
+
+class LatteMachine extends CoffeeMachine {
+  addIngredients() {
+    console.log("Adding milk to make a latte...");
+  }
+}
+
+class CappuccinoMachine extends CoffeeMachine {
+  addIngredients() {
+    console.log(
+      "Adding frothed milk and sprinkle of cocoa to make a cappuccino..."
+    );
+  }
+}
+
+const latteMachine = new LatteMachine();
+latteMachine.prepareCoffee();
+
+const cappuccinoMachine = new CappuccinoMachine();
+cappuccinoMachine.prepareCoffee();
+
+console.log("================================================");
+
+//====================================================================
+
+class TextFile {
+  constructor(name, content) {
+    this.name = name;
+    this.content = content;
+  }
+}
+
+class ImageFile {
+  constructor(name, size) {
+    this.name = name;
+    this.size = size;
+  }
+}
+
+class VideoFile {
+  constructor(name, duration) {
+    this.name = name;
+    this.duration = duration;
+  }
+}
+
+class TextEditor {
+  files = [];
+
+  addFile(file) {
+    this.files.push(file);
+  }
+
+  readTextFile(file) {
+    console.log(
+      `Text file: ${file.name}, Size: ${file.content.length} characters`
+    );
+  }
+
+  readImageFile(file) {
+    console.log(`Image file: ${file.name}, Size: ${file.size} KB`);
+  }
+
+  readVideoFile(file) {
+    console.log(`Video file: ${file.name}, Duration: ${file.duration} minutes`);
+  }
+
+  readFiles() {
+    for (const file of this.files) {
+      if (file instanceof TextFile) {
+        this.readTextFile(file);
+      } else if (file instanceof ImageFile) {
+        this.readImageFile(file);
+      } else if (file instanceof VideoFile) {
+        this.readVideoFile(file);
+      }
     }
   }
 }
 
-//==================================================================
+const textEditor = new TextEditor();
 
-class HandlerBuilder {
-  constructor() {
-    this.firstHandler = null;
-    this.lastHandler = null;
+const textFile = new TextFile("document.txt", "Lorem ipsum dolor sit amet.");
+const imageFile = new ImageFile("image.jpg", 1024);
+const videoFile = new VideoFile("video.mp4", 60);
+
+textEditor.addFile(textFile);
+textEditor.addFile(imageFile);
+textEditor.addFile(videoFile);
+
+console.log(textEditor.files);
+
+textEditor.readFiles();
+
+console.log("================================================");
+
+//====================================================================
+
+class ElectronicPaymentSystem {
+  makePayment(amount) {
+    const convertedAmount = this.convertAmount(amount);
+    console.log(`Making electronic payment: $${convertedAmount}`);
   }
 
-  add(handler) {
-    if (!this.firstHandler) {
-      this.firstHandler = handler;
-      this.lastHandler = handler;
-    } else {
-      this.lastHandler.setNextHandler(handler);
-      this.lastHandler = handler;
-    }
-    return this;
-  }
-
-  create() {
-    return this.firstHandler;
+  convertAmount(amount) {
+    return amount * 1.2;
   }
 }
 
-//=========
+class OtherPaymentSystem {
+  submit(amount) {
+    console.log(`Submitting payment request: $${amount}`);
+  }
+}
 
-// const handler = new TwoFactorAuthHandler();
+const electronicPaymentSystem = new ElectronicPaymentSystem();
+electronicPaymentSystem.makePayment(100);
 
-// handler.setNextHandler({
-//   login: (login, password) => {
-//     const result =
-//       login === "login" && password === "password"
-//         ? "The user is logged into the account"
-//         : "The user does not logged into the account";
+class PaymentAdapter {
+  constructor(paymentSystem) {
+    this.paymentSystem = paymentSystem;
+  }
 
-//     console.log(result);
-//     return result;
-//   },
-// });
-// handler.setNextHandler(new CretentialsHandler());
+  makePayment(amount) {
+    const convertedAmount = this.convertAmount(amount);
+    this.paymentSystem.submit(convertedAmount);
+  }
 
-// // handler.login("login", "password");
-// handler.login("admin", "admin123");
+  convertAmount(amount) {
+    return amount * 1.2;
+  }
+}
 
-// const handler2 = new CretentialsHandler();
+class Order {
+  constructor(amount) {
+    this.amount = amount;
 
-// handler2.setNextHandler(new RoleHander());
+    if (amount < 100) {
+      this.paymentSystem = new PaymentAdapter(new OtherPaymentSystem());
+    } else {
+      this.paymentSystem = new ElectronicPaymentSystem();
+    }
+  }
 
-// handler.setNextHandler(handler2);
+  makePayment() {
+    //     if (this.paymentSystem.makePayment) {
+    //       return this.paymentSystem.makePayment(this.amount);
+    //     }
 
-// handler.login("guest", "admin123");
+    //     if (this.paymentSystem.submit) {
+    //       return this.paymentSystem.submit(this.amount);
+    //     }
 
-const handlerBuilder = new HandlerBuilder();
+    return this.paymentSystem.makePayment(this.amount);
+  }
+}
 
-const handler = handlerBuilder
-  .add(new CretentialsHandler())
-  .add(new TwoFactorAuthHandler())
-  .add(new RoleHander())
-  .create();
+const order1 = new Order(1000);
+order1.makePayment();
 
-handler.login("admin", "admin123");
-handler.login("john", "password");
-handler.login("guest", "guest123");
-handler.login("user", "password");
-*/
+const order2 = new Order(10);
+order2.makePayment();
 
-//============================================================
+console.log("================================================");
+
+//====================================================================
+
+class ShoppingCart {
+  constructor(discountStrategy) {
+    this.discountStrategy = discountStrategy;
+    this.items = [];
+  }
+
+  addItem(item) {
+    this.items.push(item);
+  }
+
+  //   discountStrategy(price) {
+  //     return price > 100 ? price * 0.9 : price;
+  //   }
+
+  calculateTotalPrice() {
+    // let totalPrice = 0;
+    // for (const item of this.items) {
+    //   totalPrice += item.price;
+    // }
+
+    const price = this.items.reduce((acc, item) => acc + item.price, 0);
+
+    return price - this.discountStrategy.calculateDiscount(price);
+
+    // const finalPrice = totalPrice;
+    // return finalPrice;
+  }
+}
+
+class DiscountStrategy {
+  calculateDiscount(price) {
+    return price;
+  }
+}
+
+class RegularDiscountStrategy extends DiscountStrategy {
+  calculateDiscount(price) {
+    return price * 0.1;
+  }
+}
+
+class PremiumDiscountStrategy extends DiscountStrategy {
+  calculateDiscount(price) {
+    return price * 0.2;
+  }
+}
+
+class NewCustomerDiscountStrategy extends DiscountStrategy {
+  calculateDiscount(price) {
+    return price * 0.05;
+  }
+}
+
+const shoppingCart1 = new ShoppingCart(new NewCustomerDiscountStrategy());
+
+shoppingCart1.addItem({ name: "Product 1", price: 100 });
+shoppingCart1.addItem({ name: "Product 2", price: 50 });
+
+console.log(shoppingCart1.calculateTotalPrice());
+
+console.log("================================================");
+
+//====================================================================
+
+// class User {
+//   constructor(name, email, password) {
+//     this.name = name;
+//     this.email = email;
+//     this.password = password;
+//   }
+// }
+
+// class UserGroup {
+//   users = [];
+
+//   addUser(user) {
+//     this.users.push(user);
+//   }
+// }
+
+// class UserIterator {
+//   #users = null;
+//   #currentIndex = 0;
+
+//   constructor(userGroup) {
+//     // this.#names = userGroup.map((user) => user.name);
+//     this.#users = userGroup.users;
+//   }
+
+//   #hasNext() {
+//     return this.#currentIndex < this.#users.length;
+//   }
+
+//   next() {
+//     if (this.#hasNext()) {
+//       const name = this.#users[this.#currentIndex].name;
+//       this.#currentIndex++;
+//       return name;
+//     }
+//     return null;
+//   }
+
+//   list() {
+//     return this.#users.map((user) => user.name).join(", ");
+//   }
+// }
+
+// const group = new UserGroup();
+
+// group.addUser(new User("John Doe", "john@example.com", "password1"));
+
+// group.addUser(new User("Jane Smith", "jane@example.com", "password2"));
+
+// console.log(group.users.map((user) => user.password).join(", "));
+
+// //===
+
+// const iterator = new UserIterator(group);
+
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+// console.log(iterator.list());
+
+console.log("================================================");
+
+//====================================================================
 
 class User {
-  constructor(name, messenger) {
+  constructor(name, chat) {
     this.name = name;
-    this.messenger = messenger;
+    this.chat = chat;
   }
 
   sendMessage(message) {
-    const formattedMessage = this.formatMessage(message);
-    // return formattedMessage;
-    this.messenger.sendMessage(formattedMessage);
+    console.log(`${this.name} send message: ${message}`);
+    return this.chat.sendMessage(this, message);
   }
 
-  formatMessage(message) {
-    return `[${this.name}]: ${message}`;
-  }
-}
-
-class SMSMessenger {
-  static sendMessage(message) {
-    console.log(`SMS sent: ${message}`);
+  receiveMessage(user, message) {
+    console.log(`${this.name} receive message from ${user.name}: ${message}`);
   }
 }
 
-class EmailMessenger {
-  static sendMessage(message) {
-    console.log(`Email sent: ${message}`);
+class Chat {
+  constructor() {
+    this.users = [];
+  }
+
+  addUser(user) {
+    this.users.push(user);
+  }
+
+  sendMessage(sender, message) {
+    for (const user of this.users) {
+      if (user !== sender) {
+        user.receiveMessage(sender, message);
+      }
+    }
   }
 }
 
-const john = new User("John", SMSMessenger);
-const jane = new User("Jane", EmailMessenger);
+const chatMediator = new Chat();
 
-john.sendMessage("Hi!");
-jane.sendMessage("Hello!");
+const user1 = new User("John", chatMediator);
+const user2 = new User("Jane", chatMediator);
+const user3 = new User("Mike", chatMediator);
+
+chatMediator.addUser(user1);
+chatMediator.addUser(user2);
+chatMediator.addUser(user3);
+
+user1.sendMessage("Good morning, everybody!");
+// user2.sendMessage("Hi, John!");
