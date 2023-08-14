@@ -1,227 +1,239 @@
-// function loadFile(filename, callback) {
-//   try {
-//     console.log(`Download file ${filename}...`);
-//     setTimeout(() => callback(null, `File content ${filename}`), 2000);
-//   } catch (e) {
-//     callback(e);
-//   }
+// function* myGenerator() {
+//   console.log("Start");
+
+//   yield 1;
+
+//   console.log("Start 2");
+
+//   yield 2;
+
+//   console.log("Start 3");
+
+//   yield 3;
+
+//   console.log("End");
+
+//   return 4;
 // }
 
-// //===============
+// const generator = myGenerator();
 
-// function convertFile(content, callback) {
-//   setTimeout(function () {
-//     // Converting of file...
-//     callback(null, `Converted content: ${content.toUpperCase()}`);
-//   }, 1000);
-// }
+// const result1 = generator.next();
 
-// function saveFile(convertedContent, callback) {
-//   setTimeout(function () {
-//     // Saving file...
-//     callback();
-//   }, 1500);
-// }
+// console.log(result1);
 
-// function sendFileToClient(callback) {
-//   setTimeout(function () {
-//     // Sending data to interface...
-//     callback();
-//   }, 500);
-// }
+// const result2 = generator.next();
 
-// //=====
+// console.log(result2);
 
-// loadFile("example.txt", function (error, content) {
-//   if (error) {
-//     console.log("File upload error:", error);
-//   } else {
-//     console.log("File was successfully download!:");
-//     console.log("File content:", content);
+// const result3 = generator.next();
 
-//     convertFile(content, (error, convertedContent) => {
-//       if (error) {
-//         console.error("File conversion error:", error);
-//       } else {
-//         console.log("File was successfully converted!");
-//         console.log("Converted content:", convertedContent);
+// console.log(result3);
 
-//         saveFile(convertedContent, (error) => {
-//           if (error) {
-//             console.error("Error saving file:", error);
-//           } else {
-//             console.log("File was successfully saved!");
+// const result4 = generator.next();
 
-//             sendFileToClient((error) => {
-//               if (error) {
-//                 console.error("Error sending file to client:", error);
-//               } else {
-//                 console.log(
-//                   "The file has been successfully sent to the client!"
-//                 );
-//               }
-//             });
-//           }
-//         });
-//       }
-//     });
-//   }
-// });
+// console.log(result4);
 
-//========================================================================
+function* processOrder(order) {
+  yield validateOrder(order);
+  yield processsPayment(order);
+  yield sendOrderConfirmation(order);
 
-// const loadFile = (filename) =>
-//   new Promise((resolve, reject) => {
-//     console.log(`Download file ${filename}...`);
-
-//     // reject("Error");
-//     setTimeout(() => resolve(`File content ${filename}`), 2000);
-//   });
-
-//   //===========
-
-// // const result = loadFile("image.png");
-
-// // console.log(result);
-
-// // setTimeout(() => console.log(result), 3000);
-
-// // result.then(
-// //   (data) => {
-// //     console.log(data);
-// //   },
-// //   (error) => {
-// //     console.log(error);
-// //   }
-// // );
-
-// //======
-
-// loadFile("image.png")
-//   .then((data) => {
-//     return data.toUpperCase();
-//   })
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((error) => {
-//     console.log("Error", error);
-//   })
-//   .finally(() => {
-//     console.log("End");
-//   });
-
-// const result = loadFile("photo.jpg");
-
-// result.then((data) => {
-//   console.log(data, 1);
-//   return null;
-// });
-
-// result.then((data) => {
-//   console.log(data, 2);
-//   return null;
-// });
-
-// result.then((data) => {
-//   console.log(data, 3);
-//   return null;
-// });
-
-//=============================
-
-function loadFile(filename) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // console.log("2222")
-      resolve(`File content ${filename}`);
-    }, 2000);
-  });
+  return order;
 }
 
-//=============================
+// function getOrderDetails() {
+//   const order = { id: 123, product: "Product", quantity: 2 };
+//   return order;
+// }
 
-function convertFile(content) {
+function validateOrder(order) {
+  const isValid = order.quantity > 0;
+  return isValid;
+}
+
+function processsPayment() {
+  const isPaymentSuccessful = Math.random() < 0.5;
+  return isPaymentSuccessful;
+}
+
+function sendOrderConfirmation() {
+  const isConfirmationSent = true;
+  return isConfirmationSent;
+}
+
+const order = { id: 123, product: "Product", quantity: 2 };
+
+const orderProcessing = processOrder(order);
+
+// const isValidateOrder = orderProcessing.next().value;
+
+// if (isValidateOrder === false) {
+//   //........
+// }
+
+// const isProcesssPayment = orderProcessing.next();
+
+// if (isProcesssPayment === false) {
+//   //........
+// }
+
+console.log(orderProcessing.next());
+console.log(orderProcessing.next());
+console.log(orderProcessing.next());
+console.log(orderProcessing.next());
+
+//===========================================
+console.log("============================");
+
+function* generatorFunction() {
+  yield "First value";
+  yield "Second value";
+}
+
+const generator = generatorFunction();
+
+for (let value of generator) {
+  console.log(value);
+}
+
+//===========================================
+console.log("============================");
+
+function* generatorOne() {
+  yield "1 1";
+  yield "1 2";
+}
+
+function* generatorTwo() {
+  yield* generatorOne();
+  yield "2 1";
+  yield "2 2";
+}
+
+const generatorNew = generatorTwo();
+
+console.log(generatorNew.next());
+console.log(generatorNew.next());
+console.log(generatorNew.next());
+console.log(generatorNew.next());
+
+//===========================================
+console.log("============================");
+
+function* myGenerator1() {
+  try {
+    const test = yield 1;
+
+    console.log("Test", test);
+
+    const value = yield 2;
+    yield 3;
+    yield value;
+  } catch (e) {
+    console.log(e);
+    yield 1000;
+    yield 2000;
+  } finally {
+    yield 3000;
+  }
+
+  yield 5000;
+}
+
+const generator1 = myGenerator1();
+
+console.log(generator1.next().value);
+
+console.log(generator1.throw(new Error()));
+console.log(generator1.next().value);
+// console.log(generator1.return(10).value);
+console.log(generator1.next(4).value);
+console.log(generator1.next().value);
+
+//===========================================
+console.log("============================");
+
+// const asyncFunc = () => new Promise((resolve) => setTimeout(resolve, 1000));
+
+// async function* asyncGenerator() {
+//   await asyncFunc;
+//   yield "After 1 second";
+//   await asyncFunc;
+//   yield "After 2 second";
+// }
+
+// async function runGenerator() {
+//   const generator = asyncGenerator();
+
+//   //   let result = null;
+
+//   //   result = await generator.next();
+
+//   //   console.log(result);
+
+//   //   result = await generator.next();
+
+//   //   result.value;
+
+//   //   console.log(result);
+
+//   //====
+
+//   for await (const result of generator) {
+//     console.log(result);
+
+//     await asyncFunc();
+//   }
+// }
+
+// runGenerator();
+
+//===========================================
+console.log("============================");
+
+function fetchDataFromServer() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(`Converted content: ${content.toUpperCase()}`);
+      const randomNumber = Math.random();
+      if (randomNumber < 0.7) {
+        resolve("Data successfuly loaded");
+      } else {
+        reject("Data loading error");
+      }
     }, 1000);
   });
 }
 
-function saveFile(convertedContent) {
-  return new Promise((resolve, reject) => {
+function convertData(data) {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      //   resolve();
-      console.log("saveFile");
-      reject("Error test");
-    }, 1500);
-  });
-}
-
-function sendFileToClient() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      console.log("sendFileToClient");
-      reject("Error test 2");
-      //   resolve();
+      const convertedData = data.toUpperCase();
+      resolve(convertedData);
     }, 500);
   });
 }
 
-function getInfoFromFile(file) {
-  console.log(file, 1111);
+async function* fetchData() {
+  try {
+    const result = await fetchDataFromServer();
+    yield "pending";
 
-  //   if() {
-  // 	Promise.reject(...)
-  //   }
+    const convertedData = await convertData(result);
+    yield "success";
 
-  return Promise.resolve(file + 100);
+    return convertedData;
+  } catch (error) {
+    yield "error";
+  }
 }
 
-const test = // Promise.all([
-  // Promise.allSettled([
-  //   Promise.any([
-  Promise.race([
-    loadFile("example.txt"),
-    // getInfoFromFile("content.txt"),
-    saveFile(),
-    sendFileToClient(),
-    convertFile("file"),
-  ])
-    .then((data) => {
-      console.log("Data", data);
-    })
-    .catch((error) => {
-      console.log("Error", error);
-    });
+(async () => {
+  const generator = fetchData();
 
-console.log(test);
+  console.log(await generator.next());
 
-// loadFile("example.txt")
-//   .then((content) => {
-//     console.log("File was successfully download!:");
-//     console.log("File content:", content);
-//     return convertFile(content);
-//   })
+  console.log(await generator.next());
 
-//   .then((data) => {
-//     return getInfoFromFile(data);
-//   })
-//   .then((convertedContent) => {
-//     console.log("File was successfully converted!");
-//     console.log("Converted content:", convertedContent);
-//     return saveFile(convertedContent);
-//   })
-//   .then(() => {
-//     console.log("File was successfully saved!");
-//     return sendFileToClient();
-//   })
-
-//   .catch((error) => {
-//     console.log("An error occurred:", error);
-//   })
-
-//   .finally(() => {
-//     console.log("The file has been successfully sent to the client!");
-//   });
+  console.log(await generator.next());
+})();
